@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>方法定义</title>
+</head>
+<body>
+	<div>定义方法可以使用下列方法</div>
+	<div>【函数声明】</div>
+	<div>function name() {}</div>
+	<div>【函数表达式】</div>
+	<div>
+		// 匿名表达式<br>
+		var name = function() {};<br>
+		// 命名表达式，bug比较多，不建议用，例如在 ie6-8 name !== myName，其他高级浏览器里面，会报错<br>
+		var name = function myName() {};<br>
+		// 立即执行表达式<br>
+		(function(){})();<br>
+		// 返回值表达式<br>
+		return function() {};
+	</div>
+	<div>
+		【函数构造器】new Function(形参,'执行语句'); 比较少用<br>
+		var fun3 = new Function('a', 'b', 'console.log(a + b)');<br>
+		fun3(1, 2); 会打印出 3<br>
+	</div>
+	<br>
+	<div style="color: red;">三者有区别，使用函数声明来定义的函数，会被顶置到其他语句之前</div>
+</body>
+<script>
+	console.log(fun1);
+	function fun1() {};
+ 
+	console.log(fun2); 
+	var fun2 = function() {};
+
+	var fun3 = new Function('a', 'b', 'console.log(a + b)');
+	fun3(1, 2);
+</script>
+</html>

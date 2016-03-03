@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>数组常见方法</title>
+</head>
+
+<body>
+  <div>[] 的原型链是 Array.prototype</div>
+  <div style="color: red;">Array拥有的方法：</div>
+  <br>
+  <div style="color: red;">
+    只操作数组，并且改变原数组的方法
+  </div>
+  <div>
+    Array.prototype.join() 把 arr 转出字符串，元素为 undefined 的，转成空字符串
+  </div>
+  <br>
+  <div>
+    Array.prototype.sort(function(val1, val2)) 把 arr 按照转换成字符串之后，进行排序，使用 sort 之后；
+    <br> function 是可以写入自己的比较函数的，其中两个参数代表前后两个值，返回 a - b 为升序
+  </div>
+  <br>
+  <div>
+    Array.prototype.splice(index[, length][, params]) 删除从 index 下标开始的，长度为 length 的元素，并且把 params 的元素添加到删除位置
+    <br> return 被删除的元素数组
+  </div>
+  <div style="color: red;">
+    只操作数组，不改变原数组的方法
+  </div>
+  <div>
+    Array.prototype.concat(oldArr, newArr) 用于合并数组
+  </div>
+  <br>
+  <div>
+    Array.prototype.slice(index1, index2) 用于获取 index1 开始到 index2 结束的数组元素；
+    <br> index 可以是负数，负数代表倒数开始，而且下标从 -1 开始，不是从0开始
+  </div>
+  <div>
+    reverse() 反转数组
+  </div>
+  <br>
+  <div style="color: blue;">
+    ES5 方法
+    <br> IE9及IE9+，以及其他高级浏览器，可以使用的方法
+  </div>
+  <br>
+  <div style="color: red;">
+    只操作数组，不改变原数组的方法
+  </div>
+  <div>arr.forEach(function(x, index, arr){}) x 是 index 下标对应的值，arr 指向遍历的数组</div>
+  <div>arr.map(function(x){}) 对数组中每个元素执行 function，return 返回操作后的新数组</div>
+  <div>arr.filter(function(x,index){}) 用来过滤数据，如果单次数值操作返回 true 则是要保留下来的值</div>
+  <div>arr.event(function(x,index){}) 数组中每个元素都符合条件返回 true</div>
+  <div>arr.some(function(x,index){}) 数组中任意一个元素符合条件返回 true</div>
+  <div>arr.reduce(function(a, b){}[, firstA]) 数组元素两两操作，最后返回一个结果； firstA 可以作为操作的第一个 a </div>
+  <div>arr.indexOf(value, index) 和 lastIndexOf(value, index) index可以是负数，从 index 开始找 value 值，返回对应的下标</div>
+  <script>
+  var arrs = ['a', 1, undefined, 2, NaN, 'b', [1, 2], 'c'];
+  console.log(arrs.join('-'));
+  console.log(arrs);
+
+  arrs = [13, 24, 54, 3];
+  console.log('arrs = ' + arrs);
+  arrs.sort();
+  console.log('arrs.sort() 执行之后 = ' + arrs);
+
+  arrs.sort(function(a, b) {
+    return a - b;
+  });
+  console.log('arrs.sort() 重写之后 = ' + arrs);
+
+
+
+  arrs = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+  console.log(arrs);
+  console.log('arrs.slice(0,1) = ' + arrs.slice(0, 1));
+  console.log('arrs.slice(2,4) = ' + arrs.slice(2, 4));
+  console.log('arrs.slice(-4,-1) = ' + arrs.slice(-4, -1));
+
+  arrs = [0, 1, 2, 3];
+  arrs.splice(1);
+  console.log(arrs);
+  arrs = [0, 1, 2, 3];
+  arrs.splice(1, 2);
+  console.log(arrs);
+  arrs = [0, 1, 2, 3];
+  arrs.splice(1, 2, 'a', 'b');
+  console.log(arrs);
+
+  console.log('\nmap 操作，google下执行');
+  arrs = [1, 2];
+  var newArr = arrs.map(function(x) {
+    return x + 20;
+  });
+  console.log('原数组：' + arrs);
+  console.log('新数组：' + newArr);
+
+  arrs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  newArr = arrs.filter(function(x, index) {
+    return x % 3 === 0 || x > 8;
+  });
+  console.log(newArr);
+
+  console.log('\nreduce');
+  arrs = [1, 2, 3];
+  var sum = arrs.reduce(function(a, b) {
+    return a + b;
+  }, 20);
+  console.log(sum);
+
+  var max = arrs.reduce(function(a, b) {
+    return a > b ? a : b;
+  });
+  console.log(max);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组</title>
+</head>
+<body>
+	<div>js 数组是弱类型的，数组里面可以是任意对象和基本数据类型；</div>
+	<div>定义数组：</div>
+	<div>var arr = [***,***]</div>
+	<div>var arr = new Array()</div>
+	<div>var arr = new Array(10) 创建长度为 10 的数组，元素都是 undefined</div>
+	<div>var arr = new Array(1,2,3,4) 创建还有 1,2,3,4 四个数字的数组</div>
+	<div>使用 delete arr[index] 可以把对应 index 赋值为 undefined，长度不变，对应key值<span style="color:red;">不</span>存在</div>
+	<div>使用 arr[index] = undefined 可以把对应 index 赋值为 undefined，长度不变，对应key值<span style="color:red;">依然</span>存在</div>
+	<div></div>
+	<div>使用 arr[index] 可以为数组添加一个元素</div>
+	<div>使用 arr.push() 也可以为数组添加一个元素</div>
+	<div>arr.shift() 删除数组第一个元素</div>
+	<div>arr.unshift(val) 添加 val 作为 arr 的第一个元素</div>
+	<div>arr.length -= 1 删除数组最后一个元素</div>
+	<div>arr.pop() 删除数组最后一个元素</div>
+	<script>
+		function isTrue(exp) {
+			return exp? 'true' : false;
+		};
+
+		var arrs = [1,2,3,4];
+		console.log(arrs[0]);
+		console.log(arrs.length);
+		arrs[4] = 5;
+		console.log(arrs.length);
+
+		delete arrs[0];
+		console.log(arrs[0]);
+
+		console.log(arrs.length);
+
+		console.log('使用 delete 之后，key 是否存在 arr 中：' + isTrue(0 in arrs));
+
+		arrs[1] = undefined;
+		console.log(arrs[1]);
+		console.log('使用 arrs[index] = undefined 之后，key 是否存在 arr 中：' + isTrue(0 in arrs));
+
+		arrs = [1,2,3,4];
+		arrs.shift();
+		console.log(arrs);
+		arrs.unshift(2);
+		console.log(arrs);
+
+		arrs.pop();
+		console.log(arrs);
+	</script>
+</body>
+</html>

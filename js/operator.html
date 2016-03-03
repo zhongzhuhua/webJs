@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>运算符计算</title>
+</head>
+<body>
+	<div>
+		, 逗号运算符，从左到右都会被执行
+	</div>	
+	<div>
+		delete 运算符，删除 Object 对象某个属性，并且属性的 configurable 为 true 的才能删除， ie8+ 支持 Object.defineProperty 设置 configurable
+	</div>
+</body>
+
+<script>
+	console.log(',运算符');
+	var a = (1,2,3);
+	console.log(a);
+
+	console.log('delete 运算符');
+	var b = {
+		x: 1
+	};
+	console.log(b.x);
+	delete b.x;
+	console.log(b.x);
+
+	var c = {
+		x: 1
+	};
+	try {
+		Object.defineProperty(c, 'x', {
+			configurable: false
+		});
+		delete c.x;
+		console.log(c.x);
+	 } catch(e) {}
+
+	function Student() {}
+	var stu = new Student();
+	stu.name = '钟渚华';
+	console.log('Student has name ? ' + (stu.hasOwnProperty('name') ? 'true' : 'false'));
+	console.log('Student has name ? ' + (stu.__proto__.hasOwnProperty('name') ? 'true' : 'false'));	
+
+	function Teacher() {}
+	Teacher.prototype.name = '1';
+	var tea = new Teacher();
+	tea.name;
+	console.log('Teacher has name ? ' + (tea.hasOwnProperty('name') ? 'true' : 'false'));
+	console.log('Teacher has name ? ' + (tea.__proto__.hasOwnProperty('name') ? 'true' : 'false'));	
+
+	console.log(void 0);
+	console.log(void null);
+</script>
+</html>

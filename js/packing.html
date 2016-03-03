@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>包装类型</title>
+</head>
+<body>
+	number string boolean undefined null NaN 是基本数据类型，没有对象操作特征 <br>
+	但是当使用对应的 Number String 类型内置方法的时候，javaScript 会自动包装基础数据类型为临时对象，解析完毕之后销毁
+</body>
+<script>
+	var str = 'string';
+	var strObj = new String('string');
+
+	function log(s) {
+		console.log(s);
+	};
+
+	log(str);
+	log(strObj);
+
+	log(str.length);
+	log(strObj.length);
+
+	str.m = 3;
+	strObj.m = 3;
+
+	log(str.m);
+	log(strObj.m);
+
+
+</script>
+</html>

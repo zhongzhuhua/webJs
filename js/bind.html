@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bind方法</title>
+</head>
+<body>
+	<div>
+		bind 方法是 ES5 的函数，ie9 和 ie9+ 以及其他高级浏览器支持
+	</div>
+	<div>
+		bind 使用bind是 返回改变上下文this后的函数；<br>
+		函数.bind(this上下文参数, 普通参数1, 普通参数2, ...);
+	</div>
+	<script>
+		this.x = 9;
+
+		var module = {
+			x: 81,
+			getX: function (argument) {
+				return this.x;
+			}
+		};
+
+		console.log(module.getX());
+
+		var getX = module.getX;
+		console.log(getX());
+
+		// 使用 getX.bind(module) ，this 是 module
+		// bindGetX = module.getX = function () { return module.x; }
+		var bindGetX = getX.bind(module);
+		console.log(bindGetX());
+
+		function add(a, b, c) {
+			console.log(a);
+			console.log(b);
+			return a + b + c;
+		};
+		// 使用 add.bind(undefined, 100)
+		// undefined 目前的 this 是 window，则 return function add (100, b, c) {}
+		// 所以 func = function add2 (b, c) { return 100 + b + c; }
+		var func = add.bind(undefined, 100);
+		console.log(func(1, 2));
+
+		// 然后使用 func.bind 
+		// 则 func2 = function add2 (c) { return 100 + 200 + c; }
+		var func2 = func.bind(undefined, 200);
+		console.log(func2(10));
+	</script>
+</body>
+</html>

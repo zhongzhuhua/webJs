@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基础判断</title>
+</head>
+<body>
+	<script>
+		function log(exp) {
+			var dom = document.createElement('div');
+			var type = typeof(exp);
+			if(type == 'string') {
+				dom.innerHTML = '<div style="color: #00e;">' + exp + '</div>';
+			} else {
+				dom.innerHTML = '<div style="color: red; font-weight: 600;">' + (exp? 'true' : 'false') + '</div>';
+			};
+			document.body.appendChild(dom);
+		};
+
+
+		log('undefined == null');
+		log(undefined == null);
+
+		log('undefined === null');
+		log(undefined === null);
+
+		log('<br>');
+
+		log('1 == "1"');
+		log(1 == '1');
+		log('1 === "1"');
+		log(1 === '1');
+
+		log('');
+
+		log('0 == false');
+		log(0 == false);
+		log('0 === false');
+		log(0 === false);
+
+		log('<br>');
+
+		log('1 == true');
+		log(1 == true);
+		log('2 == true');
+		log(2 == true);
+		log('2 === true');
+		log(2 === true);
+
+		log('<br>');
+
+		log('new String("1") == "1"');
+		log(new String('1') == '1');
+		log('new String("1") == 1');
+		log(new String('1') == 1);
+		log('new String("a") == "a"');
+		log(new String('a') == 'a');
+		log('new String("a") === "a"');
+		log(new String('a') === 'a');
+
+		log('<br>');
+
+		log('["1"] == "1"');
+		log(['1'] == 1);
+		log('["1", "2"] == "1"');
+		log(['1', '2'] == 1);
+		log('<br>');
+
+		log('NaN == NaN');
+		log(NaN == NaN);
+		log('NaN === NaN');
+		log(NaN === NaN);
+
+	</script>
+</body>
+</html>

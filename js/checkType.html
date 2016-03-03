@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>类型检测</title>
+</head>
+
+<body>
+  <span>typeof 适合基础数据类型，函数的时候比较方便</span>
+  <br>
+  <span>instanceof 基于原型链，用户判断对象类型，如果对象A的 prototype = new 父对象B()，那么对应的 A instanceof B 结果也是 true  </span>
+  <br>
+  <span>使用Object.prototype.toString.apply(Object)返回[object 第一字母大写**]，ie6/7/8 检测 null 返回的是 [Object Object]，其他的为 [Object null]</span>
+  <br>
+</body>
+<script>
+function log(s) {
+  var dom = document.createElement('div');
+  dom.innerHTML = '<div style="color: red; ">' + s + '</div>';
+  document.body.appendChild(dom);
+};
+
+log('typeof 1 = ' + typeof 1);
+log('typeof "1" = ' + typeof '1');
+log('typeof undefined = ' + typeof undefined);
+log('typeof null = ' + typeof null);
+log('typeof [1, 2] = ' + typeof [1, 2]);
+log('typeof new Object() = ' + typeof new Object());
+log('typeof new Date() = ' + typeof new Date());
+log('typeof NaN = ' + typeof NaN);
+
+log('<br>');
+log('[1, 2] instanceof Array = ' + ([1, 2] instanceof Array ? 'true' : 'false'));
+log('new Object() instanceof Object = ' + (new Object() instanceof Object ? 'true' : 'false'));
+
+function Employer() {}
+function Manager() {}
+Manager.prototype = new Employer();
+var empA = new Employer();
+var empB = new Manager();
+
+log('<br>');
+log('empA instanceof Manager = ' + (empA instanceof Manager ? 'true' : 'false'));
+log('empB instanceof Employer = ' + (empB instanceof Employer ? 'true' : 'false'));
+
+log('<br>')
+log('Object.prototype.toString.apply([]) = ' + Object.prototype.toString.apply([]));
+</script>
+
+</html>

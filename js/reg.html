@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则表达式</title>
+	<style>
+		span {
+			display: inline-block;
+			width: 140px;
+			color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div>本章需要有一定的正则表达式基础!</div>
+	<div>
+		js正则表达式创建<br>
+		var reg = /表达式/[igm];<br>
+		var reg = new RegExp("表达式"[, "igm"]);<br>
+		使用 reg.test(str); 会返回 true 和 false 代表是否匹配；<br>
+		使用 reg.exec(str); 会返回匹配到的结果；<br>
+	</div>
+	<div style="color: red;">常见表达式</div>
+	<div><span>. </span> 除了 \r \n \u2028 \u2029 之外任意字符</div>
+	<div><span>\d</span> 0-9</div>
+	<div><span>\w</span> 0-9 a-z A-Z _ 的字符</div>
+	<div><span>\s</span> 空格 TAB 换页 换行</div>
+	<div><span>\D \W \S</span> 分别是 \d \w \s 的 非 结果</div>
+	<div><span>\t \n \r \v \f</span> TAB 换行 回车 垂直制表符 换页符</div>
+	<br>
+	<div style="color: red;">符号范围</div>
+	<div><span>[...]</span> 范围内</div>
+	<div><span>[^...]</span> 非范围内</div>
+	<div><span>^...</span> ^单独使用（不在[]里面），则是匹配开头是...的</div>
+	<div><span>...$</span> $单独使用，则会匹配 ... 结尾的</div>
+	<div><span>\b...</span> 零宽边界，会匹配有 空格/换行/换页/回车... 中的 ...</div>
+	<div><span>\B...</span> 则会匹配，非 空格/换行/换页/回车... 中的 ...；例如 \Bno 不会匹配 'h no' 会匹配 'hno'</div>
+	<br>
+	<div style="color: red;">分组</div>
+	<div><span>(...)</span> 分组，并且记录匹配到的字符串</div>
+	<div><span>(...)\1</span> 表示使用分组符匹配到的字符串</div>
+	<div><span>(?:...)</span> 仅分组，并且不会记录到匹配的字符串</div>
+	<br>
+	<div style="color: red;">重复</div>
+	<div>默认是贪婪算法的，例如 abc* 会匹配 abcc 中的 abcc 而不是 abc</div>
+	<div><span>x*?</span> 这里使用 ? 变成非贪婪算法，例如 abc*? 会匹配 abcc 中的 ab 而不是 abcc；</div>
+	<div><span>x+?</span> 这里使用 ? 变成非贪婪算法，例如 abc+? 会匹配 abcc 中的 abc 而不是 abcc；</div>
+	<div><span>x?</span> 出现 0 或者 1 次，等价于 x{0,1} </div>
+	<br>
+	<div style="color: red;">正则标签</div>
+	<div>global ignoreCase multiline 分别是 全局匹配 忽略大小写 跨行检索[比较少用]</div>
+	<br>
+	<div style="color: red;">正则方法</div>
+	<div>
+		reg.test(str) 返回 bool <br>
+		reg.exec(str) 返回匹配后的对象 <br>
+		reg.compile(str) 把 reg 内容改成 str <br>
+
+		str.search(reg) 返回 reg 的 index <br>
+		str.replace(reg, '..') 符合 reg 的替换成 .. <br>
+		str.match(reg) 返回符合 reg 的对象 <br>
+		str.split(reg) 符合 reg 的分隔成数组<br>
+	</div>
+	<script>
+		var str = 'ddabcabcdd';
+		var reg = /(abc)/;
+
+		console.log('测试(...)，表达式 /(abc)/，字符串 ' + str);
+		console.log(reg.test(reg));
+		console.log(reg.exec(str));
+
+		console.log('');
+
+		reg = /(abc)\1/;
+		str = 'abcabcabcabc';
+		console.log(reg.test(str));
+		console.log(reg.exec(str));
+
+		console.log('');
+
+		reg = /(abc)\w*(def)/;
+		str = 'abcxxdefxxabcxxdef';
+		console.log(reg.test(str));
+		console.log(reg.exec(str));
+
+		console.log('');
+
+		reg = /(abc)(def)\1/;
+		str = 'abcdefabcdef';
+		console.log(reg.test(str));
+		console.log(reg.exec(str));
+
+		console.log('');
+		
+		reg = /(?:abc)(def)/;
+		str = 'abcdefdef';
+		console.log(reg.test(str));
+		console.log(reg.exec(str));
+
+		console.log('');
+
+		reg = /abc+?/;
+		str = 'abcc';
+		console.log(reg.exec(str));
+		reg = /abc*?/;
+		str = 'abcc';
+		console.log(reg.exec(str));
+	</script>
+</body>
+</html>

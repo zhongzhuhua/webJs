@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>参数</title>
+</head>
+<body>
+	<div>
+		arguments 可以获取函数实际参数，arguments.length 就是实际参数的长度
+	</div>
+	<div>
+		函数名称.length 可以获取形参的个数
+	</div>
+	<div>
+		函数.name 可以获取函数名称
+	</div>
+	<div>
+		如果实参没有传入值，则设置 arguments 不会改变对应的实参
+	</div>
+	<div>
+		在严格模式下，即便是有传入实参，设置 arguments 也不会改变对应的实参
+	</div>
+	<script>
+		function foo(x, y, z) {
+			console.log(arguments.length);
+			console.log(foo.length);
+
+			console.log(x);
+			console.log(z);
+
+			arguments[1] = 4;
+			console.log(arguments[1]);
+			console.log(y);
+
+			arguments[2] = 5;
+			console.log(arguments[2]);
+			console.log(z);
+		};
+
+		foo(1, 2);
+
+		console.log('\nuse strict');
+		function foo2(x) {
+			"use strict";
+			console.log(arguments[0]);
+			arguments[0] = 2;
+			console.log(arguments[0]);
+			console.log(x);
+		};
+
+		foo2(1);
+	</script>
+</body>
+</html>

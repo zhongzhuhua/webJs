@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>属性操作，get/set</title>
+</head>
+<body>
+	<div>使用 var 定义的对象，或者是 function 函数，是不能被 delete 的，如果没有用 var 定义的变量，则可以删除；</div>
+	<div>hasOwnProperty('属性')检测是否有该属性；</div>
+	<div>propertyIsEnumerable('属性') 是否可以被遍历或者枚举，枚举为 false 的属性，不会被 console.log(对象) 打印出来；</div>
+	<div>Object.defineProperty(对象, '属性key', { enumerable: bool[是否可以被遍历或者枚举], value: 值, configurable: bool[是否可以删除] }) 定义对象属性</div>
+</body>
+<script>
+	var cat = new Object();
+	cat.age = 12;
+	cat.legs = 4;
+
+	console.log('age' in cat);
+	console.log('toString' in cat);
+
+	console.log(cat.hasOwnProperty('age'));
+	console.log(cat.hasOwnProperty('toString'));
+	console.log(cat); 
+
+	console.log('');
+	console.log('getter/setter');
+	var dog = {
+		$age: 12,
+		get age() {
+			return this.$age;
+		},
+		set age(val) {
+			this.$age = val;
+		}
+	};
+
+	console.log('dog age = ' + dog.age);
+	dog.age = 20;
+	console.log('dog age = ' + dog.age);
+</script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模块化应用</title>
+</head>
+<body>
+	<script>
+		// 模块化形式一
+		var module;
+		module = function() {
+			var prop = 1;
+			function foo() {};
+			return {
+				prop: prop,
+				foo: foo
+			};
+		}();
+
+		// 模块化形式二
+		var moduleA = new function() {
+			var prop = 1;
+			function foo() {};
+			this.prop = prop;
+			this.foo = foo;
+		};
+	</script>
+</body>
+</html>

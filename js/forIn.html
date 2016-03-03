@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>for in 循环</title>
+</head>
+<body>
+	<div>for in 循环不按照对象顺序</div>
+	<div>受原型链影响</div>
+	<div>enumerable 为 false 的属性不出现</div>
+</body>
+<script>
+	var p;
+	var obj = {
+		x: 'x',
+		y: 'y',
+		z: 'z'
+	};
+
+	for(p in obj) {
+		console.log(p);
+	};
+
+	var obj2 = {
+		x: 'x'
+	};
+	obj2.__proto__.y = 'y';
+	for(p in obj2) {
+		console.log(p);
+	};
+</script>
+</html>

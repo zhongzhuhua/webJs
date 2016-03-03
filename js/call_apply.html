@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>call和apply</title>
+</head>
+<body>
+	<div>
+		call 和 apply 都是用来实现继承，或者呼叫对象方法的函数；
+	</div>
+	<div>
+		call 和 apply 功能上基本相似，call 的参数是 (对象,参数1,参数2....)；apply 的参数是 (对象,[参数1,参数2]);
+	</div>
+	<div>
+		call apply 呼叫的方法中的第一级 this 指向 call apply 的第一个参数对象的 this
+	</div>
+	<script>
+		function foo(x, y) {
+			console.log(x, y, this);
+		};
+
+		foo.call(100, 1, 2);
+		foo.apply(true, [3, 4]);
+		foo.apply(null);
+		foo.apply(undefined);
+	</script>
+</body>
+</html>

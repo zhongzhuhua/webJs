@@ -1,0 +1,2 @@
+js 基础
+所有 var 定义会自动前置，所有 function 会跟随在 var 定义之后

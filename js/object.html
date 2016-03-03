@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象</title>
+</head>
+<body>
+	<div>对象都有一个原型__proto__</div>
+	<div>获取对象属性的时候，如果没有找到，会原型链上找，一直找到父对象的原型链为止</div>
+	<div>每个对象的属性都是，[string] Key : [object] value</div>
+	<br>
+	<div>各种创建对象的区别：</div>
+	<div>直接使用 对象() 返回的是 { return 这个对象; }</div>
+	<div>使用 new 对象() 返回的是 { 除了 return 之外的内容; }</div>
+
+	<div>
+		所有的定义顺序， function 参数 --> function 定义 --> var 定义；
+	</div>
+	<div>如果先有参数 x ，再有 var x，则后面的 x 覆盖参数 x；</div>
+	<div>如果现有函数 x() ，再有定义 var x; 则 x 最终还是 function x()；如果之后 y 有做赋值等操作，则为操作后的对象</div>
+</body>
+<script>
+	function log(s) {
+		console.log(s);
+	};
+
+	// 对象中的 key 会被转成 string key
+	var obj = {};
+	obj[1] = 1;
+	obj['1'] = 1;
+	console.log(obj);
+
+
+	function foo() {
+		this.a = 100;
+		return 4;
+	};
+
+	console.log(foo());
+	console.log(new foo());
+
+	console.log('\n对象定义顺序')
+	function MyClass(x) {
+		var x = 0;
+		function y() {};
+		var y;
+
+		console.log(x);
+		console.log(y);
+
+		y = 100;
+		console.log(y);
+	};
+	MyClass(100);
+</script>
+</html>

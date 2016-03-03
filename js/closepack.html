@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>闭包理解</title>
+</head>
+
+<body>
+  <div>
+    常见非闭包错误，循环绑定 click 事件，由于 click 事件会在 onclick 的时候才执行
+  </div>
+  <div id="test1">
+    <div>aaa</div>
+    <div>bbb</div>
+    <div>ccc</div>
+    <div>ddd</div>
+  </div>
+  <div id="test2">
+    <div>aaa</div>
+    <div>bbb</div>
+    <div>ccc</div>
+    <div>ddd</div>
+  </div>
+  <div>
+  	闭包基础语法 
+  	<div>!function(p1, p2...){}(p1, p2...)</div>
+  	<div>(function(p1, p2...){}(p1, p2...))</div>
+  </div>
+  <div>闭包优缺点</div>
+  <div>优点：灵活和方便；封装，安全；</div>
+  <div>缺点：容易造成空间浪费；内存泄漏；性能销号；</div>
+  <script>
+  var i;
+  var domDivs1 = (document.getElementById('test1')).getElementsByTagName('div');
+  var domDivs2 = (document.getElementById('test2')).getElementsByTagName('div');
+  for (i = 0; i < 4; i++) {
+    // 由于 click 事件是在点击的时候才执行，当页面 click 的时候，i 其实已经循环变成 4 了，所以每次 click console 出来的都是 4
+    domDivs1[i].addEventListener('click', function() {
+      console.log(i);
+    });
+  };
+
+  // 使用闭包解决该问题
+  for (i = 0; i < 4; i++) {
+    (function(i) {
+      domDivs2[i].onclick = function() {
+        console.log(i);
+      }
+    }(i));
+  };
+
+  // 闭包模拟 mvc / jquery 框架
+  (function() {
+  	var name = 'exports';
+  	var exports = {};
+
+  	exports.say = function() {
+  		console.log('my name is 007!');
+  	};
+
+  	exports.sayName = function() {
+  		console.log('my name is ' + name + '!');
+  	};
+
+  	window.exports = exports;
+  }());
+
+  exports.say();
+  exports.sayName();
+  console.log(exports.name);
+  </script>
+</body>
+
+</html>

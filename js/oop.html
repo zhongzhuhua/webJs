@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js oop理解</title>
+</head>
+<body>
+	<div>继承，封装，多态，抽象</div>
+	<div>继承可以看 extends.html</div>
+	<div>原型链，修改原型链的内容，是不会影响原对象的</div>
+	<script>
+		function Student(name) {
+			
+		};
+
+		Student.prototype.x = 100;
+
+		var s1 = new Student('');
+		console.log(s1.x);
+
+		// 修改 prototype 不影响已经创建的 s1
+		Student.prototype = { y: 200 };
+		console.log(s1.x);
+		console.log(s1.y);
+
+		var s2 = new Student();
+		console.log(s2.x);
+		console.log(s2.y);
+
+		console.log('\n重写和重载');
+
+		function Person() {
+			// 方法重载
+			var args = arguments;
+			if(args.length === 1 && args[0] !== null && typeof args[0] === 'object') {
+				var obj = args[0];
+				if(obj.name) {
+					this.name = obj.name;
+				} 
+				if(obj.sex) {
+					this.sex = obj.sex;
+				}
+			} else {
+				this.name = args[0];
+				this.sex = args[1];
+			}
+		};
+		// 重写方法
+		Person.prototype.toString = function () {
+			console.log(this.name + ' ' + this.sex);
+		};
+
+		var p1 = new Person('小钟', '男');
+		var p2 = new Person('小花', '女');
+		var p3 = new Person('小猪');
+		p1.toString();
+		p2.toString();
+		p3.toString();
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象继承</title>
+</head>
+<body>
+	<div>
+		类继承，在一个类中，使用另一个类 .call(this, params...) 或者 .apply(this, [params]);
+	</div>
+	<div>
+		使用 类A.prototype = 父类; <br>
+		// 使用子类构造器<br>
+		类A.prototype.constructor = 类A; <br>
+		类似 class Man extentd Person {} <br>
+		Person p = new Man();<br>
+	</div>
+
+	<script>
+		// 人类
+		function Person(name, childName) {
+			this.sayHi = function() {
+				console.log('大家好，我是' + name);	
+			};
+		};
+
+		function Parent(name, childName) {
+			// 把 Person 的属性赋值给 Parent
+			Person.call(this, name, childName);
+
+			this.introduce = function() {
+				console.log('我是' + childName + '的爸爸');
+			}
+		};
+
+		var p1 = new Parent('老钟', '小钟');
+		var p2 = new Parent('老王', '小王');
+
+		p1.sayHi();
+		p1.introduce();
+
+		console.log('');
+
+		p2.sayHi();
+		p2.introduce();
+
+		console.log('');
+
+		// 动物
+		function Animal(name, loveAnimal) {
+			this.say = function() {
+				console.log('大家好，我是' + name + '，我喜欢吃' + loveAnimal)
+			}
+		};
+
+		function Cat(loveAnimal) {
+			Animal.apply(this, ['猫', loveAnimal]);
+		};
+
+		var c = new Cat('鱼');
+		c.say();
+
+		console.log('');
+		// prototype
+		function People() {
+			this.name = 'People';
+			this.sayHi = function() {
+				console.log('大家好，我是' + this.name);
+			};
+		};
+
+		function Man(name) {
+			this.name = name;
+			this.introduce = function() {
+				console.log('我是男的');
+			};
+		};
+
+		Man.prototype = new People;
+		Man.prototype.constuctor = Man;
+
+		var m = new Man('小钟');
+		m.sayHi();
+		m.introduce();
+
+		var p = new People;
+		p.sayHi();
+
+	</script>
+</body>
+</html>

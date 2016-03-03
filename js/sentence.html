@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>运算语句</title>
+</head>
+<body>
+	<div>
+		{ // 这里写代码 } -- 块语句
+	</div>
+</body>
+<script>
+	function log(str) {
+		console.log(str);
+	};
+
+	{
+		log('块语句');
+	}
+
+	log('\nmyfun1');
+	var a;
+	function myfun1() {
+		var a = 1;
+	};
+	myfun1();
+	log(a);
+
+	{
+		var b = 1;
+	}
+	log(b);
+
+	log('\nmyfun2');
+	var c,d;
+	function myfun2() {
+		var c = d = 1;
+	};
+	myfun2();
+	log(c);
+	log(d);
+
+	log('\nmyfun3');
+	var e,f;
+	function myfun3() {
+		var e = 1, f = 1;
+	};
+	myfun3();
+	log(e);
+	log(f);
+
+	log('\ntry catch finally');
+	try {
+		throw 'error';
+	} catch (e) {
+		log(e);
+	};
+
+	try {
+		log('try');
+	} finally {
+		log('ending');
+	};
+
+	log('\ntwo try catch');
+	try {
+		try {
+			throw new Error('error');
+		} finally {
+			log('finally');
+		}
+	} catch (e) {
+		log(e.message);
+	} finally {
+		log('finally2');
+	}
+</script>
+</html>

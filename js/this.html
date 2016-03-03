@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>this关键字</title>
+</head>
+
+<body>
+  <div>
+    全局作用域 this === window；
+    <br> 一般函数的 this === window；
+    <br> 严格模式下，一般函数 this === undefined
+    <br>
+  </div>
+  <div>
+    作为函数对象的 function 中的 this 指向对象
+  </div>
+  <div>
+    构造器中的 this 会指向 return 的对象，如果没有 return 的话，this 会指向 function 本身
+  </div>
+  <script>
+  console.log(this === window);
+
+  function fun1() {
+    console.log(this === window);
+  };
+
+  function fun2() {
+    "use strict";
+    console.log(this);
+  };
+  fun1();
+  fun2();
+
+
+  var num = 20;
+  var obj = {
+    num: 30,
+    getNum: function() {
+      console.log(this.num);
+    }
+  };
+
+  var obj2 = {
+    num: 40
+  };
+  obj2.getNum = getNum;
+
+  function getNum() {
+    console.log(this.num);
+  };
+
+  getNum();
+  obj.getNum();
+  obj2.getNum();
+
+  var myNum = 28;
+
+  function MyClass() {
+    this.myNum = 38;
+  };
+  var clazz = new MyClass();
+  console.log(clazz.myNum);
+
+  function MyClass2() {
+    this.myNum = 39;
+    return {
+      myNum: 40
+    };
+  };
+  clazz = new MyClass2();
+  console.log(clazz.myNum);
+  </script>
+</body>
+
+</html>
