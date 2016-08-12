@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>异步操作</title>
+</head>
+
+<body>
+    <script>
+    var promise = new Promise(function(resolve, reject) {
+        let success = true;
+
+        if (success !== true) {
+            resolve('resolve');
+        } else {
+            reject('reject');
+        }
+    });
+
+    promise.then(function(value) {
+        console.log(value);
+        return 'success';
+    }, function(value) {
+        console.log(value);
+        return 'fail';
+    }).then(function(value) {
+        console.log(value);
+    });
+    </script>
+</body>
+
+</html>

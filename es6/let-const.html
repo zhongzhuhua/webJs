@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>let</div>
+    <div>块级变量，只在块内有效；</div>
+    <div>块内订了，就不受父定义影响；</div>
+    <div>不会前置；</div>
+    <br>
+    <div>const</div>
+    <div>定义了的变量就不可修改；</div>
+    <script>
+    console.log('==== let =====');
+    try {
+        console.log(name);
+        console.log(sex);
+    } catch (e) {
+        console.log(e.message);
+    }
+    var name = 'zhong';
+    let sex = 'man';
+
+    {
+        let name = 'zhuhua';
+    }
+
+    console.log(name);
+
+    console.log('==== const ====');
+    const PI = 3.14;
+    try {
+        PI = 3;
+    } catch (e) {
+        console.log(e.message);
+    }
+    console.log(PI);
+    </script>
+</body>
+
+</html>

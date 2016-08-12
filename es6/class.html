@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>类</title>
+</head>
+
+<body>
+    <script>
+    //定义类
+    class Point {
+        constructor(x = 1, y = 1) {
+            this.x = x;
+            this.y = y;
+        }
+
+        toString() {
+            console.log(`(${this.x}, ${this.y})`);
+        }
+    };
+
+    new Point().toString();
+    new Point(3, 4).toString();
+
+    console.log(Point.hasOwnProperty('x'));
+    console.log(Point.hasOwnProperty('toString'));
+    console.log(Point.__proto__.hasOwnProperty('x'));
+    console.log(Point.__proto__.hasOwnProperty('toString'));
+
+    // 类的 prototype 都是指向一个地址
+    console.log('__proto__ is only one:' + (new Point().__proto__ === new Point().__proto__));
+
+    new Point().__proto__.say = function() {
+        console.log('say');
+    };
+    new Point().say();
+
+    // 静态方法
+    console.log('\n==== 静态方法 ====');
+    class Animal {
+        constructor() {
+            console.log('Is this Animal? ' + ((new.target) === Animal));
+        }
+
+        static say() {
+            console.log('Animal say');
+        }
+    };
+
+    Animal.say();
+
+    console.log('\n==== 继承 ====');
+    class Dog extends Animal {
+        constructor() {
+            super();
+        }
+    }
+
+    Dog.say();
+    new Animal();
+    new Dog();
+    </script>
+</body>
+
+</html>

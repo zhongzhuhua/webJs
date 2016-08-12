@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>function</title>
+</head>
+
+<body>
+    <script>
+    // ES 6
+    let arr = new Set();
+    [0, 1, 2, 3, 2, 1].map(x => arr.add(x));
+    console.log(arr);
+
+    // ES 5
+    arr = new Set();
+    [0, 1, 2, 3, 2, 1].map(function(x) {
+        arr.add(x);
+    });
+    console.log(arr);
+
+    // Set 操作
+    console.log(arr.has(2));
+    console.log(arr.has('2'));
+
+    arr.delete(2);
+    console.log(arr);
+
+    arr.clear();
+    console.log(arr);
+
+    // Array.from(new Set()) 把 set 转数组
+    console.log(Array.from(new Set([1, 2, 3, 2])));
+
+    console.log('\n==== Set each ====');
+    arr = new Set([1, 2, 3, 2]);
+    for (let x of arr.keys()) {
+        console.log(x);
+    };
+
+    for (let x of arr.values()) {
+        console.log(x);
+    };
+
+    for (let x of arr.entries()) {
+        console.log(x);
+    };
+
+    // 参数默认值
+    console.log('\n==== myFun ====');
+    var myFun = function(a = 1, b = 2) {
+        console.log(a + ' ' + b);
+    };
+
+
+    myFun(3);
+
+    // forEach 循环
+    console.log('\n==== forEach ====');
+    let user = new Set();
+    user.add({
+        name: 'ice'
+    })
+    user.add({
+        name: 'snow'
+    });
+    user.forEach((value) => console.log(value.name));
+    </script>
+</body>
+
+</html>
